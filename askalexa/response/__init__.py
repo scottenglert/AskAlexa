@@ -8,3 +8,4 @@ build a valid response to a request.
 '''
 
 from askalexa.response.builder import ResponseBuilder
+from askalexa.response.progressive import ProgressiveResponseBuilder

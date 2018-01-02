@@ -95,7 +95,7 @@ class ResponseBuilder(object):
         stream.expected_pevious_token = expected_pevious_token
         stream.offset_in_milliseconds = offset_in_milliseconds
         self._response.audio_directive = play_directive
-        retur self
+        return self
 
     def stop_audio(self):
         '''

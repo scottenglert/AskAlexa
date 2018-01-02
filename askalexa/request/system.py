@@ -8,19 +8,22 @@ class System(object):
     Alexa service and the device interacting with your skill.
     '''
 
-    def __init__(self, application, user, device, api_end_point):
+    def __init__(self, application, user, device, api_endpoint, api_access_token):
         self._application = application
         self._user = user
         self._device = device
-        self._api_end_point = api_end_point
+        self._api_endpoint = api_endpoint
+        self._api_access_token = api_access_token
 
     @classmethod
     def create_from_json(cls, system_json):
         application = Application.create_from_json(system_json['application'])
         user = User.create_from_json(system_json['user'])
         device = Device.create_from_json(system_json['device'])
-        api_end_point = system_json.get('apiEndpoint')
-        return cls(application=application, user=user, device=device, api_end_point=api_end_point)
+        api_endpoint = system_json.get('apiEndpoint')
+        api_access_token = system_json.get('apiAccessToken')
+        return cls(application=application, user=user, device=device,
+                    api_endpoint=api_endpoint, api_access_token=api_access_token)
 
     @property
     def application(self):
@@ -44,11 +47,18 @@ class System(object):
         return self._device
 
     @property
-    def api_end_point(self):
+    def api_endpoint(self):
         '''
         An object that references the correct base URI to refer to by region.
         The base URI for US calls for device address data is:
         https://api.amazonalexa.com/. The base URI for UK and DE calls for
         device address data is: https://api.eu.amazonalexa.com
         '''
-        return self._api_end_point  
+        return self._api_endpoint
+
+    @property
+    def api_access_token(self):
+        '''
+ 
+        '''
+        return self._api_access_token
